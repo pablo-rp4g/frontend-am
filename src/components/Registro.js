@@ -14,7 +14,8 @@ export default function Registro() {
         const usuario = {
             nombre, correo, contrasena
         }
-        const respuesta = await Axios.post('http://localhost:4000/usuario/crear', usuario)
+        //const respuesta = await Axios.post('http://localhost:4000/usuario/crear', usuario)
+        const respuesta = await Axios.post('https://form-mern2.herokuapp.com/usuario/crear', usuario)
         const mensaje = respuesta.data.mensaje
         if (mensaje === 'Bienvenido') {
             const token = respuesta.data.token

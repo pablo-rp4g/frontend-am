@@ -13,7 +13,7 @@ export default function Index() {
     const [puesto, setPuesto] = useState('')
     const [tcontratos, setTcontratos] = useState([])
     const [contratoselect, setContratoselect] = useState('')
-    const [validado, setvalida] = useState('')
+    //const [validado, setvalida] = useState('')
     
 
     useEffect(() => {
@@ -25,15 +25,20 @@ export default function Index() {
     const obtenerClientes= async () => {
         const id=sessionStorage.getItem('idusuario')
         const token = sessionStorage.getItem('token')
-        const respuesta = await Axios.get('http://localhost:4000/cliente/listarclientesporjefe/'+id, {
+        //const respuesta = await Axios.get('http://localhost:4000/cliente/listarclientesporjefe/'+id, {
+        const respuesta = await Axios.get('https://form-mern2.herokuapp.com/cliente/listarclientesporjefe/'+id, {
+
             headers: { 'autorizacion': token }
         })
+        console.log(respuesta)
         setClientes(respuesta.data)
     }
 
     const eliminar = async (id) => {
         const token = sessionStorage.getItem('token')
-        const respuesta = await Axios.delete('http://localhost:4000/cliente/eliminar/' + id, {
+        //const respuesta = await Axios.delete('http://localhost:4000/cliente/eliminar/' + id, {
+        const respuesta = await Axios.delete('https://form-mern2.herokuapp.com/cliente/eliminar/' + id, {
+
             headers: { 'autorizacion': token }
         })
         const mensaje = respuesta.data.mensaje
@@ -78,7 +83,9 @@ export default function Index() {
             usuario: sessionStorage.getItem('idusuario')
         }
         const token = sessionStorage.getItem('token')
-        const respuesta = await Axios.post('http://localhost:4000/cliente/crear', usuario, {
+        //const respuesta = await Axios.post('http://localhost:4000/cliente/crear', usuario, {
+        const respuesta = await Axios.post('https://form-mern2.herokuapp.com/cliente/crear', usuario, {
+
             headers: { 'autorizacion': token }
         })
         const mensaje = respuesta.data.mensaje
@@ -99,7 +106,9 @@ export default function Index() {
         }
         const buscar=e.target.value
         const token = sessionStorage.getItem('token')
-        const respuesta= await Axios.get('http://localhost:4000/cliente/buscar/'+buscar, {
+        //const respuesta= await Axios.get('http://localhost:4000/cliente/buscar/'+buscar, {
+        const respuesta= await Axios.get('https://form-mern2.herokuapp.com/cliente/buscar/'+buscar, {
+
             headers: { 'autorizacion': token }
         })
         setClientes(respuesta.data)

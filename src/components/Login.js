@@ -2,16 +2,18 @@ import React, { useState } from 'react'
 import Axios from 'axios'
 import Swal from 'sweetalert2'
 
+
 export default function Login() {
 
     const [correo,setCorreo]=useState('')
     const [contrasena,setContrasena]=useState('')
 
-
     const login = async (e) => {
         e.preventDefault()
         const usuario = { correo, contrasena }
-        const respuesta = await Axios.post('http://localhost:4000/usuario/login', usuario)
+        //const respuesta = await Axios.post('http://localhost:4000/usuario/login', usuario)
+        const respuesta = await Axios.post('https://form-mern2.herokuapp.com/usuario/login', usuario)
+
         const mensaje = respuesta.data.mensaje
         if (mensaje !== 'Bienvenido') {
             Swal.fire({
@@ -29,6 +31,8 @@ export default function Login() {
             sessionStorage.setItem('nombre', nombre)
             sessionStorage.setItem('idusuario', idusuario)
             window.location.href = '/index' 
+            // console.log(respuesta)
+            // debugger
             //window.location.href = '/indexCliente'
         }
     }

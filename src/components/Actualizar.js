@@ -4,7 +4,6 @@ import Swal from 'sweetalert2'
 
 export default function Actualizar(props) {
 
-
     const [nombres, setNombres] = useState('')
     const [apellidos, setApellidos] = useState('')
     const [identificacion, setIdentificacion] = useState('')
@@ -22,7 +21,8 @@ export default function Actualizar(props) {
     const obtenercliente=async()=>{
         const id=props.match.params.id
         const token=sessionStorage.getItem('token')
-        const respuesta=await Axios.get('http://localhost:4000/cliente/listarid/'+id,{
+        //const respuesta=await Axios.get('http://localhost:4000/cliente/listarid/'+id,{
+        const respuesta=await Axios.get('https://form-mern2.herokuapp.com/cliente/listarid/'+id,{
             headers: { 'autorizacion': token }
         })
         setNombres(respuesta.data.nombres)
@@ -43,7 +43,9 @@ export default function Actualizar(props) {
             puesto,
             tcontrato: contratoselect
         }
-        const respuesta=await Axios.put('http://localhost:4000/cliente/actualizar/'+id,cliente,{
+        //const respuesta=await Axios.put('http://localhost:4000/cliente/actualizar/'+id,cliente,{
+        const respuesta=await Axios.put('https://form-mern2.herokuapp.com/cliente/actualizar/'+id,cliente,{
+
             headers: { 'autorizacion': token }
         })
         const mensaje=respuesta.data.mensaje
