@@ -22,7 +22,7 @@ export default function Actualizar(props) {
         const id=props.match.params.id
         const token=sessionStorage.getItem('token')
         //const respuesta=await Axios.get('http://localhost:4000/cliente/listarid/'+id,{
-        const respuesta=await Axios.get('https://form-mern2.herokuapp.com/cliente/listarid/'+id,{
+        const respuesta=await Axios.get('https://backend-am.herokuapp.com/cliente/listarid/'+id,{
             headers: { 'autorizacion': token }
         })
         setNombres(respuesta.data.nombres)
@@ -44,7 +44,7 @@ export default function Actualizar(props) {
             tcontrato: contratoselect
         }
         //const respuesta=await Axios.put('http://localhost:4000/cliente/actualizar/'+id,cliente,{
-        const respuesta=await Axios.put('https://form-mern2.herokuapp.com/cliente/actualizar/'+id,cliente,{
+        const respuesta=await Axios.put('https://backend-am.herokuapp.com/cliente/actualizar/'+id,cliente,{
 
             headers: { 'autorizacion': token }
         })
@@ -55,7 +55,8 @@ export default function Actualizar(props) {
             showConfirmButton: false
         })
         setTimeout(() => {
-            window.location.href = '/index'
+            //window.location.href = '/index'
+            window.location.href = '/index22'
         }, 1500)
     }
 

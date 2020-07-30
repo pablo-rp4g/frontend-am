@@ -2,7 +2,8 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
 import Nav from './components/Nav';
 import Login from './components/Login';
-import Index from './components/Index';
+//import Index from './components/Index';
+import Index22 from './components/Index22';
 import Actualizar from './components/Actualizar';
 import Registro from './components/Registro';
 
@@ -25,7 +26,8 @@ function App() {
     <Router>
       <Nav/>
       <Route path='/' exact component={Login}/>
-      <MyRoute path='/index' component={Index}/>
+      {/* <MyRoute path='/index' component={Index}/> */}
+      <MyRoute path='/index22' component={Index22}/>
       <MyRoute path='/editar/:id' component={Actualizar}/>
       <Route path='/registrar' component={Registro}/>
     </Router>

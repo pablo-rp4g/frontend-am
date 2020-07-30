@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Swal from 'sweetalert2'
 import Axios from 'axios'
 
@@ -8,30 +8,42 @@ export default function Registro() {
     const [correo, setCorreo] = useState('')
     const [contrasena, setContrasena] = useState('')
 
+    const [tperfiles, setTperfiles] = useState([])
+    const [perfilselect, setPerfilselect] = useState('')
+
+    useEffect(() => {
+        setTperfiles(['Creador', 'Validador'])
+        setPerfilselect('Creador')
+    }, [])
 
     const registrar = async (e) => {
         e.preventDefault()
         const usuario = {
-            nombre, correo, contrasena
+            nombre, correo, contrasena, perfil:perfilselect
         }
         //const respuesta = await Axios.post('http://localhost:4000/usuario/crear', usuario)
-        const respuesta = await Axios.post('https://form-mern2.herokuapp.com/usuario/crear', usuario)
+        const respuesta = await Axios.post('https://backend-am.herokuapp.com/usuario/crear', usuario)
         const mensaje = respuesta.data.mensaje
         if (mensaje === 'Bienvenido') {
+            console.log(respuesta)
             const token = respuesta.data.token
             const nombre = respuesta.data.nombre
             const idusuario = respuesta.data.id
+            const perfilSess = respuesta.data.perfil
             sessionStorage.setItem('token', token)
             sessionStorage.setItem('nombre', nombre)
             sessionStorage.setItem('idusuario', idusuario)
-            window.location.href = '/index'
+            sessionStorage.setItem('perfil', perfilSess)
+            // window.location.href = '/index'
+            window.location.href = '/index22'
             Swal.fire({
                 icon: 'success',
                 title: mensaje,
                 showConfirmButton: false,
             })
             setTimeout(() => {
-                window.location.href = '/index'
+                // window.location.href = '/index'
+                window.location.href = '/index22'
             }, 1500)
         } else {
             Swal.fire({
@@ -65,6 +77,17 @@ export default function Registro() {
                                 </div>
                                 <div className="form-group">
                                     <input type="password" name="contrasena" className="form-control" placeholder="Contraseña" required onChange={e => setContrasena(e.target.value)} />
+                                </div>
+                                <div className="form-group">
+                                    <label>Tipo de perfil</label>
+                                    <select className="form-control" onChange={(e) => setPerfilselect(e.target.value)} value={perfilselect}>
+                                        {
+                                            tperfiles.map(tperfil =>
+                                                <option key={tperfil}>
+                                                    {tperfil}
+                                                </option>)
+                                        }
+                                    </select>
                                 </div>
                                 <div className="form-group" type='submit'>
                                     <button className='form.control btn btn-primary btn-block'>

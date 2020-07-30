@@ -19,7 +19,8 @@ export default function Nav() {
     return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark p-0">
             <div className="container">
-                <a className="navbar-brand" href="/index">Inicio</a>
+                {/* <a className="navbar-brand" href="/index">Inicio</a> */}
+                <a className="navbar-brand" href="/index22">Inicio</a>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
@@ -28,7 +29,8 @@ export default function Nav() {
                         <div className="collapse navbar-collapse" id="navbarNav">
                             <ul className="navbar-nav ml-auto">
                                 <li className="nav-item">
-                                    <a href="/index" className="nav-link " >
+                                    {/* <a href="/index" className="nav-link " > */}
+                                    <a href="/index22" className="nav-link " >
                                         <i className="fas fa-user"></i> Bienvenido {sessionStorage.getItem('nombre')}
                                     </a>
                                 </li>

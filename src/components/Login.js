@@ -12,8 +12,8 @@ export default function Login() {
         e.preventDefault()
         const usuario = { correo, contrasena }
         //const respuesta = await Axios.post('http://localhost:4000/usuario/login', usuario)
-        const respuesta = await Axios.post('https://form-mern2.herokuapp.com/usuario/login', usuario)
-
+        const respuesta = await Axios.post('https://backend-am.herokuapp.com/usuario/login', usuario)
+            console.log(respuesta)
         const mensaje = respuesta.data.mensaje
         if (mensaje !== 'Bienvenido') {
             Swal.fire({
@@ -27,10 +27,13 @@ export default function Login() {
             const token = respuesta.data.token
             const nombre = respuesta.data.nombre
             const idusuario=respuesta.data.id
+            const perfilSess = respuesta.data.perfil
             sessionStorage.setItem('token', token)
             sessionStorage.setItem('nombre', nombre)
             sessionStorage.setItem('idusuario', idusuario)
-            window.location.href = '/index' 
+            sessionStorage.setItem('perfil', perfilSess)
+            //window.location.href = 'https://goofy-wright-b64611.netlify.app/index' 
+            window.location.href = '/index22' 
             // console.log(respuesta)
             // debugger
             //window.location.href = '/indexCliente'
